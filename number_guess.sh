@@ -2,7 +2,7 @@
 
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
-# Function to get user info or insert new user
+# Function to get or create user info
 get_user_info() {
   USERNAME=$1
   USER_INFO=$($PSQL "SELECT user_id, games_played, best_game FROM users WHERE username='$USERNAME'")
@@ -11,7 +11,9 @@ get_user_info() {
   then
     # New user
     echo "Welcome, $USERNAME! It looks like this is your first time here."
+    # Insert new user
     INSERT_USER_RESULT=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME')")
+    # Retrieve new user info
     USER_INFO=$($PSQL "SELECT user_id, games_played, best_game FROM users WHERE username='$USERNAME'")
   else
     # Returning user
