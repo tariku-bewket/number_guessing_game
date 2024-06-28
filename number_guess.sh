@@ -47,7 +47,7 @@ update_game_stats() {
 
 # Main game logic function
 play_game() {
-  SECRET_NUMBER=$(( RANDOM % 10 + 1 ))  
+  SECRET_NUMBER=$(( RANDOM % 1000 + 1 ))  
   NUMBER_OF_GUESSES=0
   echo "Guess the secret number between 1 and 1000:"
   while true
